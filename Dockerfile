@@ -10,7 +10,9 @@ ENV SCHEDULER_VOLUME=/opt/scheduler \
 ENV CONFD_VERSION="0.11.0" \
     CONFD_HOME="/opt/confd"
 ADD https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 ${SCHEDULER_VOLUME}/confd/bin/confd
-RUN mkdir -p "${SCHEDULER_VOLUME}/confd/etc/conf.d" "${SCHEDULER_VOLUME}/confd/etc/templates"
+RUN \
+    mkdir -p "${SCHEDULER_VOLUME}/confd/etc/conf.d" "${SCHEDULER_VOLUME}/confd/etc/templates" &&\
+    chmod +x "${SCHEDULER_VOLUME}/confd/bin/confd"
 
 # Add files
 ADD root /
