@@ -7,7 +7,7 @@ ENV SCHEDULER_VOLUME=/opt/scheduler \
 
 
 # Install confd
-ENV CONFD_VERSION="v0.11.0" \
+ENV CONFD_VERSION="0.11.0" \
     CONFD_HOME="/opt/confd"
 ADD https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 ${SCHEDULER_VOLUME}/confd/bin/confd
 RUN \
