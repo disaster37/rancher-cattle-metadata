@@ -11,6 +11,5 @@ keys = [
   "/self/container",
   "/self/stack",
   "/self/host",
-  "/containers",
 ]
 EOF
