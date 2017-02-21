@@ -7,9 +7,9 @@ ENV SCHEDULER_VOLUME=/opt/scheduler \
 
 
 # Install confd
-ENV CONFD_VERSION="v0.13.6" \
+ENV CONFD_VERSION="v0.11.0" \
     CONFD_HOME="/opt/confd"
-ADD https://github.com/yunify/confd/releases/download/${CONFD_VERSION}/confd-alpine-amd64.tar.gz ${SCHEDULER_VOLUME}/confd/bin/
+ADD https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 ${SCHEDULER_VOLUME}/confd/bin/confd
 RUN \
     mkdir -p "${SCHEDULER_VOLUME}/confd/etc/conf.d" "${SCHEDULER_VOLUME}/confd/etc/templates" &&\
     tar -xvzf "${SCHEDULER_VOLUME}/confd/bin/confd-alpine-amd64.tar.gz" -C "${SCHEDULER_VOLUME}/confd/bin/" &&\
