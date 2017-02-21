@@ -1,10 +1,10 @@
 #!/usr/bin/with-contenv sh
 
-log () {
-        echo `date` $ME - $@ >> ${CONF_LOG}
+function log {
+        echo `date` $ME - $@
 }
 
-checkNetwork () {
+function checkNetwork {
     log "[ Checking container ip... ]"
     a="`ip a s dev eth0 &> /dev/null; echo $?`"
     while  [ $a -eq 1 ];
