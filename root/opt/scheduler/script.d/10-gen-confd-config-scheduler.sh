@@ -13,4 +13,5 @@ keys = [
   "/self/host",
   "/containers",
 ]
+reload_cmd = "s6-svscanctl -t /var/run/s6/services"
 EOF
