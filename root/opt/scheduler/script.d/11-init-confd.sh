@@ -1,10 +1,10 @@
 #!/usr/bin/with-contenv sh
 
-function log {
+log() {
         echo `date` $ME - $@
 }
 
-function checkNetwork {
+checkNetwork() {
     log "[ Checking container ip... ]"
     a="`ip a s dev eth0 &> /dev/null; echo $?`"
     while  [ $a -eq 1 ];
@@ -22,7 +22,22 @@ function checkNetwork {
     done
 }
 
+waitScaleContainers() {
+  log "[ Checking service scale...]"
+  loop="true"
+  while [ "$loop" == "true" ]; do
+    ${SCHEDULER_VOLUME}/confd/bin/confd -confdir ${SCHEDULER_VOLUME}/confd/etc -onetime -backend rancher
+    source "${SCHEDULER_VOLUME}/conf/scheduler.cfg"
+    if [ "$SCHEDULER_CONTAINERS_COUNT" -eq "$SCHEDULER_SERVICE_SCALE" ]; then
+      loop="false"
+    else
+      sleep 10
+    fi
+  done
+}
+
 
 checkNetwork
+waitScaleContainers
 
 ${SCHEDULER_VOLUME}/confd/bin/confd -confdir ${SCHEDULER_VOLUME}/confd/etc -onetime -backend rancher

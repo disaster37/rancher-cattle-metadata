@@ -61,3 +61,4 @@ The following environment variable are exposed by `scheduler.cfg`:
 - **SCHEDULER_HOST_NAME**: The name of the current host.
 - **SCHEDULER_HOST_IP**: The public IP of the current host.
 - **SCHEDULER_HOST_HOSTNAME**: The hostname of the current host.
+- **SCHEDULER_CONTAINERS_COUNT**: The number of current instance that exist on service
